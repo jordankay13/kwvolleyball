@@ -6,6 +6,7 @@
     <title>Kitchener Co-ed Volleyball League</title>
     <script src="main-button.js" type="text/javascript"></script>
     <script src="team-table.js" type="text/javascript"></script>
+    <script src="prior-standings-table.js" type="text/javascript"></script>
     <style type="text/css">
         .font-style {
             font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -15,29 +16,6 @@
             font-size: x-large;
             text-decoration: underline;
             font-weight: bold;
-        }
-
-        .previous-standings {
-            height: 26px;
-            width: 64px;
-            color: black;
-            font-size: 11.0pt;
-            font-weight: 400;
-            font-style: normal;
-            text-decoration: none;
-            font-family: Calibri, sans-serif;
-            text-align: center;
-            vertical-align: center;
-            white-space: normal;
-            border-left: 1.0pt solid black;
-            border-right: 1.0pt solid black;
-            border-top-style: none;
-            border-top-color: inherit;
-            border-top-width: medium;
-            border-bottom: 1.0pt solid black;
-            padding-left: 1px;
-            padding-right: 1px;
-            padding-top: 1px;
         }
     </style>
 </head>
@@ -63,8 +41,9 @@
         <tr>
             <td style="width: 452px">
                 <main-button
-                             href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTtlkFrFGpSuH1IDMaSqFdY3KIwN8kn5VHxx61D34a4UG7q9-VkAYbxLdNqKO4DgORGX79oSct2yfL3/pub?output=pdf"
-                             label="Schedule" />
+                    href="https://docs.google.com/spreadsheets/d/e/2PACX-1vTtlkFrFGpSuH1IDMaSqFdY3KIwN8kn5VHxx61D34a4UG7q9-VkAYbxLdNqKO4DgORGX79oSct2yfL3/pub?output=pdf"
+                    label="Schedule">
+                </main-button>
                 <br />
             </td>
             <td style="text-align: center;"><b>Coordinator:</b><span lang="en-us">
@@ -78,135 +57,31 @@
         </tr>
         <tr>
             <td colspan="2" style="border-width: 0; text-align: center;">
-                <div style="text-align: center;">
-                    <span class="font-style">
-                        <strong>Teams 2025-26</strong></span>
-                    <br />
-                    <br />
-                    <team-table
-                                team1="Vertically Challenged"
-                                team2="Hit List"
-                                team3="Where's Carl"
-                                team4="Consensual Sets"
-                                team5="Sets Addicts"
-                                team6="Hits & Runz"
-                                team7="Volleybulls"
-                                team8="Balls Deep"
-                                team9="Who Gives a Hit" />
-                    <br />
-                </div>
+                <team-table
+                    team1="Vertically Challenged"
+                    team2="Hit List"
+                    team3="Where's Carl"
+                    team4="Consensual Sets"
+                    team5="Sets Addicts"
+                    team6="Hits & Runz"
+                    team7="Volleybulls"
+                    team8="Balls Deep"
+                    team9="Who Gives a Hit">
+                </team-table>
                 <span
-                      style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: medium;">
+                    style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: medium;">
                     <br />
                     <br />
                     Current Standings </span><br />
                 <br />
                 <iframe style="height: 250px; width: 500px;"
-                        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6Wr65W-O43TplwJRYNWYdt15i1uxvXGojIve_cP6tvbgQaJw6AWCv8xcQSV1I0ddx0sA7hiAF4bPT/pubhtml?gid=0&amp;range=A1:E11&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false">
+                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6Wr65W-O43TplwJRYNWYdt15i1uxvXGojIve_cP6tvbgQaJw6AWCv8xcQSV1I0ddx0sA7hiAF4bPT/pubhtml?gid=0&amp;range=A1:E11&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false">
                 </iframe>
                 <br />
                 <br />
-                <span class="font-style">2024-2025 D Standings<br />
-                    <table align="center" bgcolor="#FFFFC0" border="0" cellpadding="0" cellspacing="0" style="border-collapse:
- collapse;width:323pt" width="430">
-                        <colgroup>
-                            <col width="64" />
-                            <col width="174" />
-                            <col span="3" width="64" />
-                        </colgroup>
-                        <tr style="line-height: 21px; border-top: 1.0pt solid black">
-                            <td class="previous-standings">&nbsp;</td>
-                            <td class="previous-standings">Team</td>
-                            <td class="previous-standings">Win</td>
-                            <td class="previous-standings">Loss</td>
-                            <td class="previous-standings">Pct</td>
-                        </tr>
-                        <tr>
-                            <td class="previous-standings">1</td>
-                            <td class="previous-standings">Hit List</td>
-                            <td class="previous-standings">90</td>
-                            <td class="previous-standings">48</td>
-                            <td class="previous-standings">65.22%</td>
-                        </tr>
-                        <tr>
-                            <td class="previous-standings">2</td>
-                            <td class="previous-standings">Where's Carl</td>
-                            <td class="previous-standings">85</td>
-                            <td class="previous-standings">47</td>
-                            <td class="previous-standings">64.39%</td>
-                        </tr>
-                        <tr>
-                            <td class="previous-standings">3</td>
-                            <td class="previous-standings">Consensual Sets</td>
-                            <td class="previous-standings">84</td>
-                            <td class="previous-standings">54</td>
-                            <td class="previous-standings">60.87%</td>
-                        </tr>
-                        <tr>
-                            <td class="previous-standings">4</td>
-                            <td class="previous-standings">Sets Addicts</td>
-                            <td class="previous-standings">77</td>
-                            <td class="previous-standings">55</td>
-                            <td class="previous-standings">58.33%</td>
-                        </tr>
-                        <tr>
-                            <td class="previous-standings">5</td>
-                            <td class="previous-standings">Volleybulls</td>
-                            <td class="previous-standings">77</td>
-                            <td class="previous-standings">55</td>
-                            <td class="previous-standings">58.33%</td>
-                        </tr>
-                        <tr>
-                            <td class="previous-standings">6</td>
-                            <td class="previous-standings">Hits and Runs</td>
-                            <td class="previous-standings">77</td>
-                            <td class="previous-standings">61</td>
-                            <td class="previous-standings">55.80%</td>
-                        </tr>
-                        <tr>
-                            <td class="previous-standings">7</td>
-                            <td class="previous-standings">Balls Deep</td>
-                            <td class="previous-standings">67</td>
-                            <td class="previous-standings">65</td>
-                            <td class="previous-standings">50.76%</td>
-                        </tr>
-                        <tr>
-                            <td class="previous-standings">8</td>
-                            <td class="previous-standings">Thunderballz</td>
-                            <td class="previous-standings">65</td>
-                            <td class="previous-standings">73</td>
-                            <td class="previous-standings">47.10%</td>
-                        </tr>
-                        <tr>
-                            <td class="previous-standings">9</td>
-                            <td class="previous-standings">Hits and Giggles</td>
-                            <td class="previous-standings">61</td>
-                            <td class="previous-standings">71</td>
-                            <td class="previous-standings">46.21%</td>
-                        </tr>
-                        <tr>
-                            <td class="previous-standings">10</td>
-                            <td class="previous-standings">Court Jesters</td>
-                            <td class="previous-standings">58</td>
-                            <td class="previous-standings">74</td>
-                            <td class="previous-standings">43.94%</td>
-                        </tr>
-                        <tr>
-                            <td class="previous-standings">11</td>
-                            <td class="previous-standings">The Naturals</td>
-                            <td class="previous-standings">26</td>
-                            <td class="previous-standings">40</td>
-                            <td class="previous-standings">39.39%</td>
-                        </tr>
-                        <tr>
-                            <td class="previous-standings">12</td>
-                            <td class="previous-standings">That Team</td>
-                            <td class="previous-standings">34</td>
-                            <td class="previous-standings">104</td>
-                            <td class="previous-standings">24.64%</td>
-                        </tr>
-                    </table>
-                </span>
+                <prior-standings-table
+                    data-source="./prior_standings/d-2024-2025.json"
+                    season-title="2024-2025 D Standings" />
             </td>
         </tr>
     </table>

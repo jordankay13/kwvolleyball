@@ -4,6 +4,7 @@ class TeamTable extends HTMLElement {
     }
     connectedCallback() {
         const numberOfTeams = 9;
+        const title = "Teams 2025-26";
         const shadow = this.attachShadow({ mode: "open" });
         const style = document.createElement("style");
         style.textContent = `
@@ -43,6 +44,17 @@ class TeamTable extends HTMLElement {
                 padding-top: 1px;
             }
         `
+        const div = document.createElement("div");
+        div.style.textAlign = "center";
+        const span = document.createElement("span");
+        span.style.fontFamily = 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif';
+
+        const strong = document.createElement("strong");
+        strong.textContent = title;
+
+        span.appendChild(strong);
+        div.appendChild(span);
+
         const table = document.createElement("table");
         table.style.borderCollapse = "collapse";
         table.style.width = "336pt";
@@ -79,8 +91,13 @@ class TeamTable extends HTMLElement {
             table.appendChild(currentRow);
         }
 
+        div.appendChild(document.createElement("br"));
+        div.appendChild(document.createElement("br"));
+        div.appendChild(table);
+        div.appendChild(document.createElement("br"));
+
         shadow.appendChild(style);
-        shadow.appendChild(table);
+        shadow.appendChild(div);
     }
 }
 
