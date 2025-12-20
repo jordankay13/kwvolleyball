@@ -2,8 +2,16 @@ class TeamTable extends HTMLElement {
     constructor() {
         super();
     }
-    connectedCallback() {
-        const numberOfTeams = 9;
+    async connectedCallback() {
+        const dataSource = this.getAttribute("data-source");
+        if (!dataSource) {
+            console.error("Data source not specified for TeamTable");
+            return;
+        }
+
+        const response = await fetch(dataSource);
+        const data = await response.json();
+
         const title = "Teams 2025-26";
         const shadow = this.attachShadow({ mode: "open" });
         const style = document.createElement("style");
@@ -65,15 +73,16 @@ class TeamTable extends HTMLElement {
         table.style.backgroundColor = "BurlyWood";
         table.style.border = "2px solid black";
 
+        const numberOfTeams = Object.keys(data).length;
         const totalRows = Math.floor(numberOfTeams / 2) + numberOfTeams % 2;
         for (let row = 1; row <= totalRows; row++) {
             let currentRow = document.createElement("tr");
             currentRow.style.height = "20px";
 
-            for (let i = 0; i <= 1; i++) {
+            for (let i = 0; i < 2; i++) {
                 const teamNumber = row + (i * totalRows);
-                const teamName = this.getAttribute(`team${teamNumber}`);
-                if (teamName === null) {
+                const teamName = data[teamNumber];
+                if (teamName === undefined) {
                     break;
                 }
                 const teamNumberCell = document.createElement("td");

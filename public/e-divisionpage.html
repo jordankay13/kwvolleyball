@@ -1,93 +1,48 @@
-﻿<!DOCTYPE html
-	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<meta content="en-ca" http-equiv="Content-Language" />
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<title>Kitchener Co-ed Volleyball League</title>
-	<script src="main-button.js" type="text/javascript"></script>
-	<script src="team-table.js" type="text/javascript"></script>
-	<script src="prior-standings-table.js" type="text/javascript"></script>
-	<style type="text/css">
-		.font-style {
-			font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-		}
-
-		.xl-underlined {
-			font-size: x-large;
-			text-decoration: underline;
-			font-weight: bold;
-		}
-	</style>
+	<script src="./components/main-button.js" type="text/javascript"></script>
+	<script src="./components/team-table.js" type="text/javascript"></script>
+	<script src="./components/prior-standings-table.js" type="text/javascript"></script>
+	<script src="./components/subpage-title.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="./css/division-pages.css" />
 </head>
 
 <body>
+	<subpage-title data-title="E Division"></subpage-title>
 
-	<table style="width: 100%">
-		<tr>
-			<td style="text-align: center; background-image: url('images9054COB9.gif');" colspan="2">
-				<span class="font-style" style="font-weight: bold; font-style: italic; font-size: xx-large;">
-					<br />
-					Kitchener Co-ed Volleyball League
-					<br />
-					<span style="font-weight: bolder; font-size: medium"><a href="index.htm">home</a></span>
-				</span><br />
-				<span class="xl-underlined font-style">E Division</span>
-			</td>
-		</tr>
-		<tr>
-			<td style="width: 452px">
-				&nbsp;</td>
-			<td style="text-align: center;">&nbsp;</td>
-		</tr>
-		<tr>
-			<td style="width: 452px">
-				<main-button
-					href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQek3WZz_EgqZrehjd3K3Q5ZmKqdQXdwsf8a6oYC3JEGs3UPWpMOlZH-ZpTsOJFk2Mw_a423rFE_QTx/pub?output=pdf"
-					label="Schedule">
-				</main-button>
-				<br />
-			</td>
-			<td style="text-align: center;"><b>Coordinator:</b><span lang="en-us">
-					<a href="mailto:valleyboy77_26@hotmail.com">Dave O'Neil</a>,
-					plays for Scared Hitless</span></td>
-		</tr>
-		<tr>
-			<td style="width: 452px">
-				&nbsp;</td>
-			<td style="text-align: center;">&nbsp;</td>
-		</tr>
-		<tr>
-			<td colspan="2" style="border-width: 0; text-align: center;">
-				<team-table
-					team1="That's What She Set"
-					team2="Busta Spike"
-					team3="Scared Hitless"
-					team4="Setting Ducks"
-					team5="Be Feelin' It Tomorrow"
-					team6="New Kids"
-					team7="Big Dig Energy"
-					team8="Concordia Steins"
-					team9="All Set">
-				</team-table>
-				<span
-					style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: medium;">
-					<br />
-					<br />
-					Current Standings </span><br />
-				<br />
-				<iframe style="height: 250px; width: 500px;"
-					src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTm24goZgwVsPexYN5_aBzOYSjK0byb089FDV4K-AuWUg49r4yxX3BoY20hgWbGquQWcFfacpgHAmIA/pubhtml?gid=0&amp;range=A1:F14&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false">
-				</iframe>
-				<br />
-				<br />
-				<prior-standings-table
-					data-source="./prior_standings/e-2024-2025.json"
-					season-title="2024-2025 Standings" />
-			</td>
-		</tr>
-	</table>
+	<div class="division-layout">
+		<div class="division-left">
+			<main-button
+				href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQek3WZz_EgqZrehjd3K3Q5ZmKqdQXdwsf8a6oYC3JEGs3UPWpMOlZH-ZpTsOJFk2Mw_a423rFE_QTx/pub?output=pdf"
+				label="Schedule">
+			</main-button>
+		</div>
+		<div class="division-right">
+			<b>Coordinator:</b> <a href="mailto:valleyboy77_26@hotmail.com">Dave O'Neil</a>, plays for Scared Hitless
+		</div>
+
+		<div class="division-full">
+			<team-table data-source="./teams/e.json"></team-table>
+		</div>
+		<div class="division-full">
+			<span
+				style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: medium;">
+				Current Standings </span>
+			<br /><br />
+			<iframe style="height: 250px; width: 500px;"
+				src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTm24goZgwVsPexYN5_aBzOYSjK0byb089FDV4K-AuWUg49r4yxX3BoY20hgWbGquQWcFfacpgHAmIA/pubhtml?gid=0&amp;range=A1:F14&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false">
+			</iframe>
+		</div>
+		<div class="division-full">
+			<prior-standings-table
+				data-source="./prior_standings/e-2024-2025.json"
+				season-title="2024-2025 Standings" />
+		</div>
+	</div>
 
 </body>
 

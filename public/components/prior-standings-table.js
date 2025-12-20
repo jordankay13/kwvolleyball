@@ -16,7 +16,6 @@ class PriorStandingsTable extends HTMLElement {
         const response = await fetch(dataSource);
         const data = await response.json();
 
-        const numberOfTeams = 9;
         const shadow = this.attachShadow({ mode: "open" });
         const style = document.createElement("style");
         style.textContent = `
