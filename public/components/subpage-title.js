@@ -10,7 +10,7 @@ class SubpageTitle extends HTMLElement {
             return;
         }
         const div = document.createElement("div");
-        div.style.backgroundImage = "url('images9054COB9.gif')";
+        div.style.backgroundImage = "url('/images9054COB9.gif')";
         div.style.textAlign = "center";
         div.style.fontFamily = 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif';
         const websiteTitle = document.createElement("span");

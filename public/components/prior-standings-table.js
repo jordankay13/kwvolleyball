@@ -1,128 +1,138 @@
 class PriorStandingsTable extends HTMLElement {
     constructor() {
         super();
+        this._shadow = this.attachShadow({ mode: "open" });
     }
-    async connectedCallback() {
-        const dataSource = this.getAttribute("data-source");
-        if (!dataSource) {
-            console.error("Data source not specified for PriorStandingsTable");
-            return;
-        }
-        const seasonTitle = this.getAttribute("season-title");
-        if (!seasonTitle) {
-            console.error("Season title not specified for PriorStandingsTable");
-            return;
-        }
-        const response = await fetch(dataSource);
-        const data = await response.json();
 
-        const shadow = this.attachShadow({ mode: "open" });
+    connectedCallback() {
+        this._renderPlaceholder();
+        this._loadAndRender().catch(err => {
+            console.error("prior-standings-table: failed to load data", err);
+            this._renderError();
+        });
+    }
+
+    async _loadAndRender() {
+        const dataSource = this.getAttribute("data-source");
+        const seasonTitle = this.getAttribute("season-title") || "";
+
+        if (!dataSource) throw new Error("data-source attribute required");
+
+        const resp = await fetch(dataSource);
+        if (!resp.ok) throw new Error(`failed to fetch ${dataSource}: ${resp.status}`);
+        const data = await resp.json();
+
+        this._shadow.innerHTML = "";
+        this._shadow.appendChild(this._createStyles());
+        this._shadow.appendChild(this._createTitle(seasonTitle));
+        this._shadow.appendChild(this._createTable(data));
+    }
+
+    _renderPlaceholder() {
+        this._shadow.innerHTML = "";
+        const p = document.createElement("div");
+        p.textContent = "Loading standings...";
+        p.style.fontStyle = "italic";
+        this._shadow.appendChild(p);
+    }
+
+    _renderError() {
+        this._shadow.innerHTML = "";
+        const p = document.createElement("div");
+        p.textContent = "Failed to load past standings.";
+        p.style.color = "red";
+        this._shadow.appendChild(p);
+    }
+
+    _createStyles() {
         const style = document.createElement("style");
         style.textContent = `
-            .previous-standings {
-                height: 26px;
-                width: 64px;
-                color: black;
-                font-size: 11.0pt;
-                font-weight: 400;
-                font-style: normal;
-                text-decoration: none;
-                font-family: Calibri, sans-serif;
+            :host {
+                display: block;
                 text-align: center;
-                vertical-align: center;
-                white-space: normal;
-                border-left: 1.0pt solid black;
-                border-right: 1.0pt solid black;
-                border-top-style: none;
-                border-top-color: inherit;
-                border-top-width: medium;
-                border-bottom: 1.0pt solid black;
-                padding-left: 1px;
-                padding-right: 1px;
-                padding-top: 1px;
             }
-        `
-        const span = document.createElement("span");
-        span.style.fontFamily = 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif';
-        span.textContent = seasonTitle;
+            .title {
+                font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+                display:block;
+                margin-bottom:6px;
+            }
+            table {
+                border-collapse: collapse;
+                max-width:430px;
+                margin: 0 auto;
+                background: #FFFFC0;
+                border-spacing: 0;
+            }
+            col.rank { width:64px; }
+            col.team { width:174px; }
+            col.stat { width:64px; }
+            td, th {
+                text-align:center;
+                font-family: Calibri, sans-serif;
+                font-size: 15px;
+                border-left: 1px solid black;
+                border-right:1px solid black;
+                border-bottom:1px solid black;
+                padding:2px 4px;
+            }
+            table { border-top: 1px solid black; }
+            th { font-weight: 700; height: 21px; border-top: 1px solid black; }
+        `;
+        return style;
+    }
 
+    _createTitle(text) {
+        const span = document.createElement("span");
+        span.className = "title";
+        span.textContent = text;
+        return span;
+    }
+
+    _createTable(data) {
         const table = document.createElement("table");
-        table.style.borderCollapse = "collapse";
-        table.style.width = "323pt";
-        table.style.marginLeft = "auto";
-        table.style.marginRight = "auto";
-        table.style.borderSpacing = "0px";
-        table.style.padding = "0px";
-        table.style.backgroundColor = "#FFFFC0";
 
         const colGroup = document.createElement("colgroup");
-        const col1 = document.createElement("col");
-        col1.width = "64";
-        const col2 = document.createElement("col");
-        col2.width = "174";
-        const col3 = document.createElement("col");
-        col3.width = "64";
-        col3.span = "3";
-        colGroup.appendChild(col1);
-        colGroup.appendChild(col2);
-        colGroup.appendChild(col3);
+        const col1 = document.createElement("col"); col1.className = "rank";
+        const col2 = document.createElement("col"); col2.className = "team";
+        const col3 = document.createElement("col"); col3.className = "stat"; col3.span = 3;
+        colGroup.append(col1, col2, col3);
         table.appendChild(colGroup);
 
-        const firstRow = document.createElement("tr");
-        firstRow.style.height = "21px";
-        firstRow.style.borderTop = "1.0pt solid black";
+        const thead = document.createElement("thead");
+        const headerRow = document.createElement("tr");
+        ["Rank", "Team", "Win", "Loss", "Pct"].forEach(txt => {
+            const th = document.createElement("th");
+            th.textContent = txt;
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
 
-        const column1 = document.createElement("td");
-        column1.className = "previous-standings";
-        firstRow.appendChild(column1);
-        const column2 = document.createElement("td");
-        column2.className = "previous-standings";
-        column2.textContent = "Team";
-        firstRow.appendChild(column2);
-        const column3 = document.createElement("td");
-        column3.className = "previous-standings";
-        column3.textContent = "Win";
-        firstRow.appendChild(column3);
-        const column4 = document.createElement("td");
-        column4.className = "previous-standings";
-        column4.textContent = "Loss";
-        firstRow.appendChild(column4);
-        const column5 = document.createElement("td");
-        column5.className = "previous-standings";
-        column5.textContent = "Pct";
-        firstRow.appendChild(column5);
-        table.appendChild(firstRow);
+        const tbody = document.createElement("tbody");
+        const fragment = document.createDocumentFragment();
 
-        for (let key in data) {
+        const keys = Object.keys(data || {});
+        keys.forEach(key => {
+            const team = data[key] || {};
+            const wins = Number(team.wins) || 0;
+            const losses = Number(team.losses) || 0;
+            const pct = (wins + losses)
+                ? ((100 * wins) / (wins + losses)).toFixed(2) + "%"
+                : "0.00%";
 
-            const row = document.createElement("tr");
-            const teamCol1 = document.createElement("td");
-            teamCol1.className = "previous-standings";
-            teamCol1.textContent = key;
-            row.appendChild(teamCol1);
-            const teamCol2 = document.createElement("td");
-            teamCol2.className = "previous-standings";
-            teamCol2.textContent = data[key]["team_name"];
-            row.appendChild(teamCol2);
-            const teamCol3 = document.createElement("td");
-            teamCol3.className = "previous-standings";
-            teamCol3.textContent = data[key]["wins"];
-            row.appendChild(teamCol3);
-            const teamCol4 = document.createElement("td");
-            teamCol4.className = "previous-standings";
-            teamCol4.textContent = data[key]["losses"];
-            row.appendChild(teamCol4);
-            const teamCol5 = document.createElement("td");
-            teamCol5.className = "previous-standings";
-            teamCol5.textContent = (100 * data[key]["wins"] / (data[key]["wins"] + data[key]["losses"])).toFixed(2) + "%";
-            row.appendChild(teamCol5);
-            table.appendChild(row);
+            const tr = document.createElement("tr");
+            const cols = [key, team.team_name || "", wins, losses, pct];
+            cols.forEach(c => {
+                const td = document.createElement("td");
+                td.textContent = c;
+                tr.appendChild(td);
+            });
+            fragment.appendChild(tr);
+        });
 
-        }
-
-        shadow.appendChild(style);
-        shadow.appendChild(span);
-        shadow.appendChild(table);
+        tbody.appendChild(fragment);
+        table.appendChild(tbody);
+        return table;
     }
 }
 
