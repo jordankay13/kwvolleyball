@@ -5,6 +5,7 @@
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Kitchener Co-ed Volleyball League</title>
+	<script src="/components/current-standings.js" type="text/javascript"></script>
 	<script src="/components/main-button.js" type="text/javascript"></script>
 	<script src="/components/team-table.js" type="text/javascript"></script>
 	<script src="/components/prior-standings-table.js" type="text/javascript"></script>
@@ -30,18 +31,15 @@
 			<team-table data-source="/teams/e.json"></team-table>
 		</div>
 		<div class="division-full">
-			<span
-				style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: medium;">
-				Current Standings </span>
-			<br /><br />
-			<iframe style="height: 250px; width: 500px;"
-				src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTm24goZgwVsPexYN5_aBzOYSjK0byb089FDV4K-AuWUg49r4yxX3BoY20hgWbGquQWcFfacpgHAmIA/pubhtml?gid=0&amp;range=A1:F14&amp;single=true&amp;widget=false&amp;headers=false&amp;chrome=false">
-			</iframe>
+			<current-standings
+				data-source="https://docs.google.com/spreadsheets/d/e/2PACX-1vTnDi5qhjn3LMleKPuw_UW9UomKRswIhvbBRr_Npn-Vc77MSSpzgXV52INAvDhganG7SssZk_MswtBc/pub?gid=1621491110&single=true&output=csv">
+			</current-standings>
 		</div>
 		<div class="division-full">
 			<prior-standings-table
 				data-source="/prior_standings/e-2024-2025.json"
-				season-title="2024-2025 Standings" />
+				season-title="2024-2025 Standings">
+			</prior-standings-table>
 		</div>
 	</div>
 
