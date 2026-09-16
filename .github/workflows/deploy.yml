@@ -26,6 +26,20 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore File Timestamps
+        run: |
+          git ls-files -z | while IFS= read -r -d '' file; do
+            
+            # Get the ISO 8601 timestamp of the last commit for this file
+            timestamp=$(git log -1 --format="%cI" -- "$file")
+            
+            # Apply the timestamp to the file modification time
+            touch -d "$timestamp" "$file"
+
+          done
 
       - name: Install LFTP
         run: sudo apt-get update && sudo apt-get install -y lftp
@@ -50,6 +64,9 @@ jobs:
               --exclude=.github/ \
               --exclude=.git/ \
               --reverse \
-              --delete --verbose $DRY_RUN_FLAG; 
+              --only-newer \
+              --delete \
+              --verbose \
+              $DRY_RUN_FLAG;
             quit
           "
