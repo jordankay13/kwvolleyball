@@ -55,7 +55,19 @@ class MainButton extends HTMLElement {
         const wrapper = document.createElement("span");
         wrapper.style.textAlign = "center";
         const link = document.createElement("a");
-        link.href = this.getAttribute("href") || "#";
+
+        let targetUrl = this.getAttribute("href") || "#";
+
+        if (this.hasAttribute("cache-bust") && targetUrl !== "#") {
+            try {
+                const url = new URL(targetUrl, window.location.href);
+                url.searchParams.set('v', Date.now());
+                targetUrl = url.toString();
+            } catch (e) {
+                console.error("Invalid href provided to <main-button>", e);
+            }
+        }
+        link.href = targetUrl;
         link.textContent = this.getAttribute("label") || "Button";
 
         shadow.appendChild(style);

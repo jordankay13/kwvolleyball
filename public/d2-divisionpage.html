@@ -19,8 +19,9 @@
 	<div class="division-layout">
 		<div class="division-left">
 			<main-button
-				href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRhH02Hy6NFZGnGWez3hQL-NtH4cGZKZ3sIHT09JnaXmz_1wRTmbN8mv_u6dPQ2h3XeO008arLTLBQ4/pub?gid=710635853&single=true&output=pdf"
-				label="Schedule">
+				href="/schedules/D2 Schedule Pt1 - 2026-2027.pdf"
+				label="Schedule"
+				cache-bust>
 			</main-button>
 		</div>
 		<div class="division-right">
@@ -34,6 +35,12 @@
 			<current-standings
 				data-source="https://docs.google.com/spreadsheets/d/e/2PACX-1vQT4ScDcf1givwPLLEmJ2KuovNZaxBv5Q_9q8UBVqvIJq2qjzR9531WE9EKNosw9TrDBc4B8tKGjVwF/pub?gid=1738720139&single=true&output=csv">
 			</current-standings>
+		</div>
+		<div class="division-full">
+			<prior-standings-table
+				data-source="/prior_standings/d2-2025-2026.json"
+				season-title="2025-2026 Standings">
+			</prior-standings-table>
 		</div>
 		<div class="division-full">
 			<prior-standings-table
