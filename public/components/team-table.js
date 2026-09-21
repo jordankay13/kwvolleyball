@@ -47,7 +47,7 @@ class TeamTable extends HTMLElement {
 
     _createTitle() {
         const title = document.createElement("div");
-        title.textContent = "Teams 2025-2026";
+        title.textContent = "Teams 2026-2027";
         return title;
     }
 
