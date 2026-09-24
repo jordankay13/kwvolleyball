@@ -22,7 +22,7 @@ class SubpageTitle extends HTMLElement {
         homeLink.style.fontWeight = "bolder";
         homeLink.style.fontStyle = "italic";
         homeLink.style.fontSize = "medium";
-        homeLink.href = "./index.htm";
+        homeLink.href = "./index.html";
         homeLink.textContent = "home";
 
         const divisionTitle = document.createElement("span");
